@@ -1,0 +1,37 @@
+[
+  {
+    "id": "p1",
+    "title": "MacBook Pro 14” M3",
+    "price": 58999,
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+    "category": "Laptop"
+  },
+  {
+    "id": "p2",
+    "title": "iPhone 15 Pro",
+    "price": 64999,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569",
+    "category": "Telefon"
+  },
+  {
+    "id": "p3",
+    "title": "Sony WH-1000XM5",
+    "price": 12999,
+    "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb",
+    "category": "Kulaklık"
+  },
+  {
+    "id": "p4",
+    "title": "Apple Watch Series 9",
+    "price": 17999,
+    "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a",
+    "category": "Saat"
+  },
+  {
+    "id": "p5",
+    "title": "Logitech MX Master 3S",
+    "price": 3499,
+    "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7",
+    "category": "Aksesuar"
+  }
+]
