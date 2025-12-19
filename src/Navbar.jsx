@@ -49,9 +49,11 @@ const handleLogout = async () => {
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <div
           onClick={() => navigate("/home")}
-          className="flex items-center gap-2 cursor-pointer group"
+          className="flex items-center gap-2 cursor-pointer group transition-all duration-300 hover:gap-4"
         >
-          <div className="p-2 rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/30">
+          <div 
+          className="p-2 rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 
+          transition-all duration-300 hover:translate-y-1 hover:translate-x-1 hover:rotate-3 hover:scale-105 hover:shadow-xl">
             <Store size={22} />
           </div>
           <span className="text-xl font-bold text-slate-900 dark:text-slate-100 transition-colors">
@@ -108,7 +110,7 @@ const handleLogout = async () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg border transition-colors
+            className="md:hidden p-2 rounded-lg border transition-transform duration-200 active:scale-90
             bg-slate-50 border-slate-200 text-slate-700
             dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
           >
@@ -116,61 +118,61 @@ const handleLogout = async () => {
           </button>
         </div>
       </div>
+      <div
+        className={`md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-4 
+         transition-all duration-800 ease-out overflow-hidden
+         ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+      <div className="flex flex-col gap-2 mt-4 pb-4">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center justify-between p-4 rounded-xl transition-colors
+                ${
+                  isActive
+                    ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400"
+                    : "bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                }`
+              }
+            >
+              <div className="flex items-center gap-3">
+                <item.icon size={20} />
+                {item.name}
+              </div>
+              {!!item.badge && item.badge > 0 && (
+                <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                  {item.badge}
+                </span>
+              )}
+            </NavLink>
+          ))}
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden px-4 pb-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex flex-col gap-2 mt-4">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center justify-between p-4 rounded-xl transition-colors
-                  ${
-                    isActive
-                      ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400"
-                      : "bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
-                  }`
-                }
-              >
-                <div className="flex items-center gap-3">
-                  <item.icon size={20} />
-                  {item.name}
-                </div>
-                {!!item.badge && item.badge > 0 && (
-                  <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                    {item.badge}
-                  </span>
-                )}
-              </NavLink>
-            ))}
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            <button
+              onClick={() => dispatch(toggleTheme())}
+              className="p-3 rounded-xl border font-semibold text-sm flex items-center justify-center gap-2
+              bg-slate-50 border-slate-200 text-slate-700
+              dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
+            >
+              {isDarkMode ? <Moon size={18} /> : <Sun size={18} />}
+              {isDarkMode ? t.darkMode : t.lightMode}
+            </button>
 
-            <div className="grid grid-cols-2 gap-2 mt-2">
-              <button
-                onClick={() => dispatch(toggleTheme())}
-                className="p-3 rounded-xl border font-semibold text-sm flex items-center justify-center gap-2
-                bg-slate-50 border-slate-200 text-slate-700
-                dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
-              >
-                {isDarkMode ? <Moon size={18} /> : <Sun size={18} />}
-                {isDarkMode ? t.darkMode : t.lightMode}
-              </button>
-
-              <button
-                onClick={handleLogout}
-                className="p-3 rounded-xl border font-semibold text-sm flex items-center justify-center gap-2
-                bg-slate-50 border-slate-200 text-slate-700
-                dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
-              >
-                <LogOut size={18} />
-                {t.logout}
-              </button>
-            </div>
+            <button
+              onClick={handleLogout}
+              className="p-3 rounded-xl border font-semibold text-sm flex items-center justify-center gap-2
+              bg-slate-50 border-slate-200 text-slate-700
+              dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
+            >
+              <LogOut size={18} />
+              {t.logout}
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+      </nav>
   );
 }
 
