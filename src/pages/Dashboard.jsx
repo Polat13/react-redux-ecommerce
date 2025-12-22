@@ -12,9 +12,9 @@ export function Dashboard() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <div className="mb-8">
+      <div className="flex flex-col gap-1 mb-8">
         <h2 className="text-3xl font-bold theme-text">{t.title}</h2>
-        <p className="mt-1 theme-text-muted">{t.subtitle}</p>
+        <p className="theme-text-muted">{t.subtitle}</p>
       </div>
 
       <div className="theme-surface theme-border rounded-2xl p-6 shadow-sm flex flex-col gap-6">
@@ -23,7 +23,7 @@ export function Dashboard() {
             <User className="theme-primary" size={28} />
           </div>
 
-          <div>
+          <div className="flex flex-col">
             <p className="text-sm theme-text-muted">{t.usernameLabel}</p>
             <p className="text-lg font-semibold theme-text">
               {username || (lang === "en" ? "Not set" : "Belirtilmedi")}
@@ -38,7 +38,7 @@ export function Dashboard() {
             <Lock className="theme-primary" size={26} />
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col">
             <p className="text-sm theme-text-muted">{t.passwordLabel}</p>
             <p className="text-lg font-semibold tracking-widest theme-text">
               {t.passwordMasked}

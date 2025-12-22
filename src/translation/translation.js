@@ -15,10 +15,17 @@ export const translations = {
       passwordMasked: "••••••••",
       changeBtn: "Değiştir",
     },
-    card: {
-      productsTitle: "Ürünler",
-      cartTitle: "Sepetim",
+    product: {
+      title: "Ürünler",
       addBtn: "Ekle",
+      searchBtn: "Ara",
+      closeSearch: "Kapat",
+      searchPlaceholder: "Ürün veya kategori ara...",
+      noResults: "Ürün bulunamadı",
+      tryDifferent: "Farklı bir arama terimi deneyin",
+    },
+    card: {
+      cartTitle: "Sepetim",
       clearCart: "Sepeti Temizle",
       emptyTitle: "Sepetiniz boş",
       quantityLabel: "Adet",
@@ -29,6 +36,7 @@ export const translations = {
     navbar: {
       home: "Ana Sayfa",
       dashboard: "Profil",
+      product: "Ürünler",
       card: "Sepet",
       logout: "Çıkış",
       lightMode: "Açık",
@@ -58,10 +66,17 @@ export const translations = {
       passwordMasked: "••••••••",
       changeBtn: "Change",
     },
-    card: {
-      productsTitle: "Products",
-      cartTitle: "My Cart",
+    product: {
+      title: "Products",
       addBtn: "Add",
+      searchBtn: "Search",
+      closeSearch: "Close",
+      searchPlaceholder: "Search products or categories...",
+      noResults: "No products found",
+      tryDifferent: "Try a different search term",
+    },
+    card: {
+      cartTitle: "My Cart",
       clearCart: "Clear Cart",
       emptyTitle: "Your cart is empty",
       quantityLabel: "Qunatity",
@@ -72,6 +87,7 @@ export const translations = {
     navbar: {
       home: "Home",
       dashboard: "Profile",
+      product: "Products",
       card: "Card",
       logout: "Logout",
       lightMode: "Light",

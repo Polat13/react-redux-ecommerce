@@ -40,8 +40,8 @@ export default function LoginPage() {
             <label className="text-sm font-medium text-slate-700">
               Kullanıcı Adı
             </label>
-            <div className="relative">
-              <CircleUserRound className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <div className="relative flex items-center">
+              <CircleUserRound className="absolute left-3 text-slate-400" size={18} />
               <input
                 type="text"
                 required
@@ -57,8 +57,8 @@ export default function LoginPage() {
             <label className="text-sm font-medium text-slate-700">
               Şifre
             </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <div className="relative flex items-center">
+              <Lock className="absolute left-3 text-slate-400" size={18} />
               <input
                 type="password"
                 required

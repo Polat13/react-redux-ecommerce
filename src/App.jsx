@@ -6,6 +6,7 @@ import MainLayout from './layout/MainLayout';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Product from './pages/Product';
 import Card from './pages/Card';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route element={<MainLayout />} >
           <Route path='/home' element={<HomePage />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/product' element={<Product />} />
           <Route path='/card' element={<Card />} />
         </Route>
       </Routes>

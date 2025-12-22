@@ -9,6 +9,7 @@ import {
   Store,
   Sun,
   Moon,
+  Package,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,19 +25,20 @@ export function Navbar() {
 
   const { isDarkMode } = useSelector(selectThemeSummary);
   const { totalQuantity } = useSelector(selectCardSummary);
-  const { lang } = useSelector(selectLanguageSummary); 
+  const { lang } = useSelector(selectLanguageSummary);
 
   const t = translations[lang]?.navbar ?? translations.tr.navbar;
-  
+
 
   const navItems = [
     { name: t.home, icon: Home, path: "/home" },
     { name: t.dashboard, icon: BarChart2, path: "/dashboard" },
+    { name: t.product, icon: Package, path: "/product" },
     { name: t.card, icon: ShoppingCart, path: "/card", badge: totalQuantity },
   ];
 
-const handleLogout = async () => {
-    await persistor.purge(); 
+  const handleLogout = async () => {
+    await persistor.purge();
     navigate("/login", { replace: true });
     window.location.reload();
   };
@@ -45,14 +47,14 @@ const handleLogout = async () => {
     <nav className="sticky top-0 z-50 w-full backdrop-blur-md border-b transition-colors duration-300 
       bg-white/80 border-slate-200 
       dark:bg-slate-900/80 dark:border-slate-800">
-      
+
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <div
           onClick={() => navigate("/home")}
           className="flex items-center gap-2 cursor-pointer group transition-all duration-300 hover:gap-4"
         >
-          <div 
-          className="p-2 rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 
+          <div
+            className="p-2 rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 
           transition-all duration-300 hover:translate-y-1 hover:translate-x-1 hover:rotate-3 hover:scale-105 hover:shadow-xl">
             <Store size={22} />
           </div>
@@ -68,10 +70,9 @@ const handleLogout = async () => {
               to={item.path}
               className={({ isActive }) =>
                 `relative flex items-center gap-2 font-medium transition-colors duration-200 
-                ${
-                  isActive
-                    ? "text-indigo-600 dark:text-indigo-400"
-                    : "text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
+                ${isActive
+                  ? "text-indigo-600 dark:text-indigo-400"
+                  : "text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                 }`
               }
             >
@@ -122,7 +123,7 @@ const handleLogout = async () => {
         className={`md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-4 
          transition-all duration-800 ease-out overflow-hidden
          ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-      <div className="flex flex-col gap-2 mt-4 pb-4">
+        <div className="flex flex-col gap-2 mt-4 pb-4">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
@@ -130,10 +131,9 @@ const handleLogout = async () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className={({ isActive }) =>
                 `flex items-center justify-between p-4 rounded-xl transition-colors
-                ${
-                  isActive
-                    ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400"
-                    : "bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                ${isActive
+                  ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400"
+                  : "bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
                 }`
               }
             >
@@ -172,7 +172,7 @@ const handleLogout = async () => {
           </div>
         </div>
       </div>
-      </nav>
+    </nav>
   );
 }
 

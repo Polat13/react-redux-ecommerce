@@ -2,7 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  totalQuantity: null,
+  totalQuantity: 0,
   totalPrice: 0,
 };
 
@@ -12,18 +12,53 @@ const cardSlice = createSlice({
   reducers: {
     addToCard: {
       reducer: (state, action) => {
-        state.items.push(action.payload);
-        const itemTotalPrice = action.payload.price * action.payload.quantity;
-        state.totalQuantity += action.payload.quantity;
-        state.totalPrice += itemTotalPrice;
+        const existingItem = state.items.find(
+          (item) => item.id === action.payload.id
+        );
+
+        if (existingItem) {
+          // If product already exists, increment its quantity
+          existingItem.quantity += 1;
+          state.totalQuantity += 1;
+          state.totalPrice += existingItem.price;
+        } else {
+          // If new product, add it to cart
+          state.items.push(action.payload);
+          state.totalQuantity += action.payload.quantity;
+          state.totalPrice += action.payload.price * action.payload.quantity;
+        }
       },
       prepare: (product) => ({
         payload: {
           ...product,
-          cardItemId: nanoid(), 
+          cardItemId: nanoid(),
           quantity: product.quantity ?? 1,
         },
       }),
+    },
+
+    incrementQuantity: (state, action) => {
+      const item = state.items.find(
+        (i) => i.cardItemId === action.payload
+      );
+
+      if (item) {
+        item.quantity += 1;
+        state.totalQuantity += 1;
+        state.totalPrice += item.price;
+      }
+    },
+
+    decrementQuantity: (state, action) => {
+      const item = state.items.find(
+        (i) => i.cardItemId === action.payload
+      );
+
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+        state.totalQuantity -= 1;
+        state.totalPrice -= item.price;
+      }
     },
 
     removeFromCard: (state, action) => {
@@ -44,5 +79,6 @@ const cardSlice = createSlice({
   },
 });
 
-export const { addToCard, removeFromCard, clearCard } = cardSlice.actions;
+export const { addToCard, incrementQuantity, decrementQuantity, removeFromCard, clearCard } = cardSlice.actions;
 export default cardSlice.reducer;
+

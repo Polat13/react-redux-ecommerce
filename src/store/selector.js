@@ -7,7 +7,7 @@ export const selectAuthSummary = createSelector(
   ],
   (user, isAuthenticated) => ({
     user,
-    username : user?.username??"",
+    username: user?.username ?? "",
     isAuthenticated,
   })
 );
@@ -18,30 +18,38 @@ export const selectCardSummary = createSelector(
     (state) => state.card.totalPrice,
     (state) => state.card.totalQuantity,
   ],
-  (items, totalPrice, totalQuantity) => ({
-    items,
-    totalPrice,
-    totalQuantity,
-    isEmpty: items.length === 0,
-  })
+  (items, totalPrice, totalQuantity) => {
+    // Calculate item totals in the selector
+    const itemsWithTotal = items.map(item => ({
+      ...item,
+      itemTotal: (item.price ?? 0) * (item.quantity ?? 0)
+    }));
+
+    return {
+      items: itemsWithTotal,
+      totalPrice,
+      totalQuantity,
+      isEmpty: items.length === 0,
+    };
+  }
 );
 
 export const selectThemeSummary = createSelector(
-    [
-        (state) => state.theme.mode,
-    ],
-    (mode) => ({
-        mode,
-        isDarkMode: mode === "dark",
-    })
+  [
+    (state) => state.theme.mode,
+  ],
+  (mode) => ({
+    mode,
+    isDarkMode: mode === "dark",
+  })
 );
 
 export const selectLanguageSummary = createSelector(
-    [
-        (state) => state.language.lang,
-    ],
-    (lang) => ({
-        lang,
-        isTR: lang === "tr",
-    })
+  [
+    (state) => state.language.lang,
+  ],
+  (lang) => ({
+    lang,
+    isTR: lang === "tr",
+  })
 );
